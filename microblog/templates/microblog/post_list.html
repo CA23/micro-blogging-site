@@ -1,11 +1,18 @@
-<div>
-    <h1><a href="/">Microblog</a><h1>
-</div>
+{% extends 'microblog/base.html' %}
 
+{% load static %}
+
+
+
+{% block content %}
 {% for post in posts %}
-<div>
-    <p>Published: {{post.published_date}}</p>
-    <h2><a href="">{{ post.title }}</a></h2>
-    <p>{{ post.text|linebreaksbr }}</p>
-</div>
+    <div class="post">
+    <div class="date">
+        <p>published: {{ post.published_date }}</p>
+    </div>
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
 {% endfor %}
+{% endblock %}
+        
